@@ -1,20 +1,20 @@
 import PropTypes from "prop-types";
 
-function NavBar({ pokemonIndex, setPokemonIndex, pokemonList }) {
-    const handleClickPrevious = () => {
-        setPokemonIndex(pokemonIndex - 1)
-    }
-    
-    const handleClickNext = () => {
-        setPokemonIndex(pokemonIndex + 1)
-    }
+function NavBar({ setPokemonIndex, pokemonList }) {
 
     return (
-          <nav>
-            {pokemonIndex > 0 && (<button onClick={handleClickPrevious}>Previous</button>)}
-            {pokemonIndex < pokemonList.length - 1 && (<button onClick={handleClickNext}>Next</button>)}
-          </nav>
-    )
+      <div>
+        {pokemonList.map((pokemon, index) => (
+          <button 
+            type="button" 
+            onClick={() => setPokemonIndex(index)}
+            key={pokemon.name}
+            >
+          {pokemon.name}
+          </button>
+        ))}
+    </div>
+    );
 }
 
 NavBar.propTypes = {
